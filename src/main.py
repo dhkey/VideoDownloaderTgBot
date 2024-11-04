@@ -2,7 +2,7 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
-import json 
+import json
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token = json.load(open("config.json"))["token"] )
