@@ -42,7 +42,7 @@ async def tiktokHandler(message: Message, state: FSMContext):
     await message.bot.send_video(
         chat_id = message.chat.id,
         video = video,
-        caption = f"downloded by @{ username }"
+        caption = f"downloaded by @{ username }"
     )
 
     os.remove(file_path)
