@@ -11,8 +11,8 @@ import re
 
 router = Router()
 
-def checkUrl(url):
-    for platform in ["tiktok", "reel", "youtu"]:
+def checkUrl(url): #TODO make link check
+    for platform in ["tiktok", "reel", "youtu", "facebook"]:
         if platform in url and "https" in url:
             return True
     return False
@@ -23,7 +23,7 @@ async def tiktokHandler(message: Message, state: FSMContext):
     if not checkUrl(message.text):
         return 
     
-    await message.answer("downloading")
+    await message.answer("downloading...")
     
     downloading_thread = Thread(target=download,args=(message.text, message.chat.id))
     downloading_thread.start()

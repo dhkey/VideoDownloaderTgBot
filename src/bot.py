@@ -9,11 +9,12 @@ from handlers.personal_actions import router as personal_router
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token = json.load(open("config.json"))["token"] )
+
 dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
-    await message.answer("Hello!")
+    await message.answer("free video downloader ")
 
 async def main():
     #registering routers
