@@ -1,7 +1,5 @@
 import os
 import yt_dlp
-# from moviepy.editor import VideoFileClip
-# import subprocess
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 downloads_path = os.path.join(script_dir, "..", "downloads")
@@ -23,5 +21,3 @@ def download(url, fileName):
         except:
             return False
     
-    # clip = VideoFileClip(f"{downloads_path}/{fileName}.mp4")
-    # clip.write_videofile(f"{downloads_path}/{fileName}.mp4", codec='libx264', audio_codec='libfdk_aac')

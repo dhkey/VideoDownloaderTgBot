@@ -7,7 +7,6 @@ from api.downloader import download
 from threading import Thread
 import os 
 from aiogram.types import InputFile, FSInputFile
-import re 
 
 router = Router()
 

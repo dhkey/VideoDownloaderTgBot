@@ -14,7 +14,7 @@ dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
-    await message.answer("free video downloader ")
+    await message.answer("Video downloader by @dhkey.\n\nFor now supports tiktok, instagram reels, facebook videos, youtube shorts.\n\n Soon: youtube long videos downloader.")
 
 async def main():
     #registering routers
