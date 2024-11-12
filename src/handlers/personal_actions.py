@@ -40,7 +40,7 @@ async def tiktokHandler(message: Message, state: FSMContext):
     username = bot_info.username
     
     await message.bot.send_video(
-        chat_id = message.from_user.id,
+        chat_id = message.chat.id,
         video = video,
         caption = f"downloaded by @{ username }"
     )
