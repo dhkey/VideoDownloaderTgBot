@@ -5,7 +5,7 @@ from aiogram.filters.command import Command
 import json 
 
 #importing routers
-from handlers.tiktok import router as tiktok_router
+from handlers.personal_actions import router as personal_router
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token = json.load(open("config.json"))["token"] )
@@ -17,7 +17,7 @@ async def cmd_start(message: types.Message):
 
 async def main():
     #registering routers
-    dp.include_routers( tiktok_router )
+    dp.include_routers( personal_router )
 
     await dp.start_polling(bot)
 
