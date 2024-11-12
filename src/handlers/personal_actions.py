@@ -11,10 +11,17 @@ import re
 
 router = Router()
 
+def checkUrl(url):
+    for platform in ["tiktok", "reel", "youtu"]:
+        if platform in url and "https" in url:
+            return True
+    return False
 
 @router.message()
 async def tiktokHandler(message: Message, state: FSMContext):
-
+    
+    if not checkUrl(message.text):
+        return 
     
     await message.answer("downloading")
     

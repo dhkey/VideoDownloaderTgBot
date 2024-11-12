@@ -1,5 +1,6 @@
 import os
 import yt_dlp
+from moviepy.editor import VideoFileClip
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 downloads_path = os.path.join(script_dir, "..", "downloads")
@@ -13,6 +14,11 @@ def download(url, fileName):
         'noplaylist': True,
         'quiet': False,
         'verbose': True,
+        'no_warnings': True
+    
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
+        
+    clip = VideoFileClip(f"{downloads_path}/{fileName}.mp4")
+    clip.write_videofile(f"{downloads_path}/{fileName}.mp4", codec="libx264", audio_codec="aac")
