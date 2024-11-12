@@ -24,7 +24,7 @@ async def tiktokHandler(message: Message, state: FSMContext):
     
     await message.answer("downloading...")
     
-    downloading_thread = Thread(target=download,args=(message.text, message.chat.id))
+    downloading_thread = Thread(target=download,args=(message.text, message.from_user.id))
     downloading_thread.start()
     downloading_thread.join()
     
@@ -40,7 +40,7 @@ async def tiktokHandler(message: Message, state: FSMContext):
     username = bot_info.username
     
     await message.bot.send_video(
-        chat_id = message.chat.id,
+        chat_id = message.from_user.id,
         video = video,
         caption = f"downloaded by @{ username }"
     )
