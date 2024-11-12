@@ -11,20 +11,20 @@ from aiogram.types import InputFile, FSInputFile
 router = Router()
 
 def checkUrl(url): #FIXME make normal
-    for platform in ["tiktok", "reel", "youtu", "facebook"]:
+    for platform in ["tiktok", "reel", "facebook"]: #TODO add youtube
         if platform in url and "https" in url:
             return True
     return False
 
 @router.message()
-async def tiktokHandler(message: Message, state: FSMContext):
+async def urls_handler(message: Message, state: FSMContext):
     
     if not checkUrl(message.text):
         return 
     
     await message.answer("downloading...")
     
-    downloading_thread = Thread(target=download,args=(message.text, message.from_user.id))
+    downloading_thread = Thread(target=download,args=(message.text, message.chat.id))
     downloading_thread.start()
     downloading_thread.join()
     
@@ -32,7 +32,7 @@ async def tiktokHandler(message: Message, state: FSMContext):
     downloads_path = os.path.join(script_dir, "..", "downloads")
     downloads_path = os.path.normpath(downloads_path)
     
-    file_path = f"{downloads_path}/{message.from_user.id}.mp4"
+    file_path = f"{downloads_path}/{message.chat.id}.mp4"
     
     video = FSInputFile(file_path, filename=os.path.basename(file_path))
     
