@@ -4,15 +4,22 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
 import json
 
+#importing routers
+from handlers.personal_actions import router as personal_router
+
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token = json.load(open("config.json"))["token"] )
+
 dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
-    await message.answer("Hello!")
+    await message.answer("Video downloader by @dhkey.\n\nFor now supports tiktok, instagram reels, facebook videos, youtube shorts.\n\n Soon: youtube long videos downloader.")
 
 async def main():
+    #registering routers
+    dp.include_routers( personal_router )
+
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
