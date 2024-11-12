@@ -10,7 +10,7 @@ from aiogram.types import InputFile, FSInputFile
 
 router = Router()
 
-def checkUrl(url): #TODO make link check
+def checkUrl(url): #FIXME make normal
     for platform in ["tiktok", "reel", "youtu", "facebook"]:
         if platform in url and "https" in url:
             return True
@@ -36,9 +36,13 @@ async def tiktokHandler(message: Message, state: FSMContext):
     
     video = FSInputFile(file_path, filename=os.path.basename(file_path))
     
+    bot_info = await message.bot.get_me()
+    username = bot_info.username
+    
     await message.bot.send_video(
         chat_id = message.chat.id,
-        video = video
+        video = video,
+        caption = f"downloded by @{ username }"
     )
 
     os.remove(file_path)
